@@ -7,8 +7,6 @@ var axios = require("axios");
 var fs = require("fs")
 var spotify = new Spotify(keys.spotify);
 
-// do-what-it-says 
-
 // MY INPUTS IN NODE
 var find = process.argv[2];
 var search = process.argv.slice(3).join(' ');
@@ -80,24 +78,30 @@ function readtxt() {
         var fileSearch = data.split(",");
         find = fileSearch[0];
         search = fileSearch[1];
-    })
+        start(find, search);
+    })  
 }
 
-
-// SWITCH STATEMENT TO CHOOSE FROM MY API'S
-switch (find) {
-    case "concert-this":
-    bandsAPI(search);
-        break;
-    case "spotify-this-song":
-    spotifyAPI(search)
-        break;
-    case "movie-this":
-    movieAPI(search)
-        break;
-    case "do-what-it-says":
-    readtxt();
-        break;
-    default:
-        break;
+// SWITCH STATEMENT TO CHOOSE FROM MY API'S 
+// WRAPPED IN A FUNCTION FOR READIND RANDOM TXT
+function start(find, search) {
+    
+    switch (find) {
+        case "concert-this":
+        bandsAPI(search);
+            break;
+        case "spotify-this-song":
+        spotifyAPI(search)
+            break;
+        case "movie-this":
+        movieAPI(search)
+            break;
+        case "do-what-it-says":
+        readtxt();
+            break;
+        default:
+            break;
+    }
 }
+
+start(find, search)
