@@ -13,8 +13,10 @@ var search = process.argv.slice(3).join(' ');
 
 // MOVIE API FUNCTION
 function movieAPI(search) {  
+    if(search == ""){
+        search = "Mr Nobody";
+    }
     var queryUrl = "http://www.omdbapi.com/?t=" + search + "&y=&plot=short&apikey=trilogy";
-
     axios.get(queryUrl)
     .then(function(response){ 
         console.log("--------------------------");
@@ -32,7 +34,9 @@ function movieAPI(search) {
 
 // SPOTIFY API FUNCTION
 function spotifyAPI(search) {
-    
+    if(search == ""){
+        search = "The Sign Ace of Base";
+    }
     spotify
       .search({ type: 'track', query: search, limit: 1 })
       .then(function(response) {
